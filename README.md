@@ -40,9 +40,29 @@ use ZammadAPIClient\ResourceType;
 class MyController extends Controller
 {
 
- $client = App::make('zammad.client');
- $ticket = $client->resource( ResourceType::TICKET )->get(34);
+  $zammad = App::make('zammad');
 
+  // get all tickets
+  $data = $zammad->getTickets()
+
+  // get ticket of specific id
+  $data = $zammad->getTickets(34)
+
+  // To view the data
+  $data->getValues()
+
+  // Search the data
+  $data = $zammad->search('text that you want to search')
+
+  // Add new ticket
+  $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
+  $data = $zammad->createTicket($ticket_values)
+
+  // Update a new ticket
+  $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
+  $data = $zammad->updateTicket($ticket_id, $ticket_values)
+
+  // Delete a ticket
+  $data = $zammad->deleteTicket($ticket_id)
 }
 ```
-More examples at: [zammad-api-client-php github repository](https://github.com/zammad/zammad-api-client-php)
