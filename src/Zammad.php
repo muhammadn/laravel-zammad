@@ -91,18 +91,34 @@ class Zammad extends ResourceType
 	return false;
     }
 
-    public function createTicket()
+    public function createTicket($array)
     {
         $ticket = $client->resource(ResourceType::TICKET);
-        $ticket->setValue('title', 'My new ticket');
+	foreach($array as $key => $value){
+            $ticket->setValue($key, $value);
+        }
+
 	$ticket->save();
+
+        if ($ticket->hasError())
+        {
+            return $ticket->getError();
+        }
     }
 
-    public function updateTicket($id)
+    public function updateTicket($id, $array)
     {
         $ticket = $this->client()->resource(ResourceType::TICKET)->get($id);
-        $ticket->setValue('title', 'My second new ticket');
+        foreach($array as $key => $value){
+            $ticket->setValue($key, $value);
+	}
+
         $ticket->save();
+
+        if ($ticket->hasError())
+        {
+            return $ticket->getError();
+        }
     }
 
 }
