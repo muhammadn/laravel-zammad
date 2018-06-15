@@ -48,8 +48,11 @@ class MyController extends Controller
   // get ticket of specific id
   $data = $zammad->getTickets(34)
 
-  // To view the data
+  // To view the data (all values)
   $data->getValues()
+
+  // Get single value 
+  $data->getValue('title')
 
   // Search the data
   $data = $zammad->search('text that you want to search')

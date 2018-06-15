@@ -5,7 +5,7 @@ namespace Muhammadn\ZammadLaravel;
 use ZammadAPIClient\Client;
 use ZammadAPIClient\ResourceType;
 
-class Zammad extends ResourceType
+class Zammad
 {
     private $username;
     private $password;
@@ -33,10 +33,10 @@ class Zammad extends ResourceType
 
     public function getTickets()
     {
-        $tickets = $this->client()->resource(ResourceType::TICKET)->all();
+        $tickets = $this->tickets = $this->client()->resource(ResourceType::TICKET)->all();
 
-        if ($tickets)
-            return $tickets;
+        if ($this->tickets)
+            return $this->tickets;
 
         if ($tickets->hasError())
         {
@@ -48,10 +48,10 @@ class Zammad extends ResourceType
 
     public function getTicket($id)
     {
-        $ticket = $this->client()->resource(ResourceType::TICKET)->get($id);
+        $ticket = $this->ticket =  $this->client()->resource(ResourceType::TICKET)->get($id);
 
-	if ($ticket)
-            return $ticket;
+	if ($this->ticket)
+            return $this;
 
         if ($ticket->hasError())
         {
@@ -63,20 +63,11 @@ class Zammad extends ResourceType
 
     public function deleteTicket($id)
     {
-        $ticket = $this->client()->resource(ResourceType::TICKET)->delete($id);
-
-        if ($ticket)
-            return $ticket;
-
-        if ($ticket->hasError())
-        {
-            return $ticket->getError();
-        }
-
-        return false;
+        $ticket = $this->client()->resource(ResourceType::TICKET)->get($id);
+        $ticket->delete();
     }
 
-    public function searchTicket($string)
+    public function search($string)
     {
         $search = $this->client()->resource(ResourceType::TICKET)->search($string);
 
@@ -93,7 +84,7 @@ class Zammad extends ResourceType
 
     public function createTicket($array)
     {
-        $ticket = $client->resource(ResourceType::TICKET);
+        $ticket = $this->client()->resource(ResourceType::TICKET);
 	foreach($array as $key => $value){
             $ticket->setValue($key, $value);
         }
@@ -114,6 +105,9 @@ class Zammad extends ResourceType
 	}
 
         $ticket->save();
+
+	if ($ticket)
+            return $ticket;
 
         if ($ticket->hasError())
         {
