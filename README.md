@@ -37,7 +37,8 @@ Example code:
 
 use ZammadAPIClient\ResourceType; 
 
-class MyController {
+class MyController extends Controller
+{
 
  $client = App::make('zammad.client');
  $ticket = $client->resource( ResourceType::TICKET )->get(34);
