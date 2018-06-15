@@ -34,6 +34,6 @@ class MyController {
  $client = App::make('zammad.client');
  $ticket = $client->resource( ResourceType::TICKET )->get(34);
 
-
 }
 ```
+More examples at: [zammad-api-client-php github repository](https://github.com/zammad/zammad-api-client-php)
