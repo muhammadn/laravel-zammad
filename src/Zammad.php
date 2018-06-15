@@ -11,6 +11,7 @@ class Zammad
     private $password;
     private $url;
 
+    protected $tickets;
     protected $ticket;
     protected $search;
 
@@ -23,9 +24,9 @@ class Zammad
 
     protected function client(){
         $client = new Client([
-            'url'           => env('ZAMMAD_URL'), // URL to your Zammad installation
-            'username'      => env('ZAMMAD_USERNAME'),  // Username to use for authentication
-            'password'      => env('ZAMMAD_PASSWORD'),           // Password to use for authentication
+            'url'           => $this->url,  // URL to your Zammad installation
+            'username'      => $this->username,  // Username to use for authentication
+            'password'      => $this->password,           // Password to use for authentication
         ]);
 
         return $client;
@@ -51,7 +52,7 @@ class Zammad
         $ticket = $this->ticket =  $this->client()->resource(ResourceType::TICKET)->get($id);
 
 	if ($this->ticket)
-            return $this;
+            return $this->ticket;
 
         if ($ticket->hasError())
         {
