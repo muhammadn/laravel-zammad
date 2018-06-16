@@ -1,6 +1,6 @@
 <?php
 
-namespace Muhammadn\ZammadLaravel;
+namespace Muhammadn\LaravelZammad;
 
 use ZammadAPIClient\Client;
 use ZammadAPIClient\ResourceType;

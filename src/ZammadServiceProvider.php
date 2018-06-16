@@ -1,6 +1,6 @@
 <?php
 
-namespace Muhammadn\ZammadLaravel;
+namespace Muhammadn\LaravelZammad;
 
 use Illuminate\Support\ServiceProvider;
 use ZammadAPIClient\Client;
@@ -26,7 +26,7 @@ class ZammadServiceProvider extends ServiceProvider
     {
         $this->app->bind('zammad', function()
         {
-            return new \Muhammadn\ZammadLaravel\Zammad;
+            return new \Muhammadn\LaravelZammad\Zammad;
         });
     }
 }

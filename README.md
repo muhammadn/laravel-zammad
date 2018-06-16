@@ -31,41 +31,48 @@ Edit config/app.php and add:
         Muhammadn\ZammadLaravel\ZammadServiceProvider::class,
     ],
 ```      
+
+### Configure your laravel Facade to use this wrapper
+Edit config/app.php and add in aliases section:
+```php
+    'aliases' => [
+        ... all the facades ...
+        'LaravelZammad' => Muhammadn\ZammadLaravel\ZammadFacade::class,
+    ]
 ## How to use this wrapper
 Example code:
 ```php
 
-use ZammadAPIClient\ResourceType; 
 
 class MyController extends Controller
 {
 
-  $zammad = App::make('zammad');
+  public function index(LaravelZammad $zammad)
+  {
+      // get all tickets
+      $data = $zammad::getTickets()
 
-  // get all tickets
-  $data = $zammad->getTickets()
+      // get ticket of specific id
+      $data = $zammad::getTickets(34)
 
-  // get ticket of specific id
-  $data = $zammad->getTickets(34)
+      // To view the data (all values)
+      $data->getValues()
 
-  // To view the data (all values)
-  $data->getValues()
+      // Get single value 
+      $data->getValue('title')
 
-  // Get single value 
-  $data->getValue('title')
+      // Search the data
+      $data = $zammad::search('text that you want to search')
 
-  // Search the data
-  $data = $zammad->search('text that you want to search')
+      // Add new ticket
+      $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
+      $data = $zammad::createTicket($ticket_values)
 
-  // Add new ticket
-  $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
-  $data = $zammad->createTicket($ticket_values)
+      // Update a new ticket
+      $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
+      $data = $zammad::updateTicket($ticket_id, $ticket_values)
 
-  // Update a new ticket
-  $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
-  $data = $zammad->updateTicket($ticket_id, $ticket_values)
-
-  // Delete a ticket
-  $data = $zammad->deleteTicket($ticket_id)
-}
+      // Delete a ticket
+      $data = $zammad::deleteTicket($ticket_id)
+    }
 ```
