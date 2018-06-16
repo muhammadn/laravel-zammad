@@ -51,7 +51,7 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all tickets
-      $data = $zammad::allickets();
+      $data = $zammad::allTickets();
       // get all tickets with pagination
       // example below for page 4, 50 entries at a time.
       $data = $zammad::allTickets(4, 50);
