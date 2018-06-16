@@ -39,6 +39,7 @@ Edit config/app.php and add in aliases section:
         ... all the facades ...
         'LaravelZammad' => Muhammadn\ZammadLaravel\ZammadFacade::class,
     ]
+```
 ## How to use this wrapper
 Example code:
 ```php
