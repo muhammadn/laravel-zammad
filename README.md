@@ -1,4 +1,4 @@
-# zammad-laravel
+# laravel-zammad
 Laravel wrapper around the official Zammad PHP API Library
 
 This wrapper depends on the official [Zammad PHP Client](https://github.com/zammad/zammad-api-client-php)
@@ -24,7 +24,7 @@ ZAMMAD_URL='https://your-zammad-instance'
 ```
 
 ### Configure your laravel providers to use this wrapper
-Edit config/app.php and add:
+Edit config/app.php and add in providers section:
 ```php
     'providers' => [
         .... all the other providers ....
