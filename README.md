@@ -145,7 +145,7 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all organizations
-      $data = $zammad::allOrganizaions();
+      $data = $zammad::allOrganizations();
       // get all organizations with pagination
       // example below for page 4, 50 entries at a time.
       $data = $zammad::allOrganizations(4, 50);
