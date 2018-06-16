@@ -14,5 +14,10 @@
             "email": "muhammad@taqisystems.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Muhammadn\\LaravelZammad\\": "src"
+        }
+    },
     "minimum-stability": "dev"
 }
