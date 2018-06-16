@@ -47,7 +47,7 @@ class Zammad
         return false;
     }
 
-    public function getTicket($id)
+    public function findTicket($id)
     {
         $ticket = $this->ticket =  $this->client()->resource(ResourceType::TICKET)->get($id);
 

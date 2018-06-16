@@ -57,7 +57,7 @@ class MyController extends Controller
       $data = $zammad::allTickets(4, 50);
 
       // get ticket of specific id
-      $data = $zammad::getTicket(34);
+      $data = $zammad::findTicket(34);
 
       // To view the data (all values)
       $data->getValues();
