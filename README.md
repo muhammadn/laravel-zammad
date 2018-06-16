@@ -66,7 +66,7 @@ class MyController extends Controller
       $data->getValue('title');
 
       // get articles from ticket
-      $ticket = $zammad::getTickets(34);
+      $ticket = $zammad::findTicket(34);
       $articles = $ticket->getTicketArticles();
       // get first article content
       $article_content = $articles[0]->getValues();
