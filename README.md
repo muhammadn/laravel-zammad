@@ -76,4 +76,5 @@ class MyController extends Controller
       // Delete a ticket
       $data = $zammad::deleteTicket($ticket_id)
     }
+}
 ```
