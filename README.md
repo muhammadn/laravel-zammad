@@ -72,10 +72,10 @@ class MyController extends Controller
       $article_content = $articles[0]->getValues();
 
       // Search the data
-      $data = $zammad::search('text that you want to search')
+      $data = $zammad::searchTickets('text that you want to search')
       // get search results with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::search('text you want to search', 4, 50);
+      $data = $zammad::searchTickets('text you want to search', 4, 50);
 
       // Add new ticket
       $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
@@ -116,10 +116,10 @@ class MyController extends Controller
       $data->getValue('title');
 
       // Search the data
-      $data = $zammad::search('text that you want to search')
+      $data = $zammad::searchUsers('text that you want to search')
       // get search results with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::search('text you want to search', 4, 50);
+      $data = $zammad::searchUsers('text you want to search', 4, 50);
 
       // Add new User
       $user_values = ['email' => 'user@user.com', 'owner_id' => 1]
@@ -160,10 +160,10 @@ class MyController extends Controller
       $data->getValue('title');
 
       // Search the data
-      $data = $zammad::search('text that you want to search')
+      $data = $zammad::searchOrganizations('text that you want to search')
       // get search results with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::search('text you want to search', 4, 50);
+      $data = $zammad::searchOrganizations('text you want to search', 4, 50);
 
       // Add organization
       $organization_values = ['name' => 'Zammad', 'active' => true]

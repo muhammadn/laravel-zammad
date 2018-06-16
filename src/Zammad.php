@@ -36,22 +36,22 @@ class Zammad
         return $client;
     }
 
-    public function search($string, $page = null, $objects_per_page = null)
+    // ticket functions
+    public function searchTickets($string, $page = null, $objects_per_page = null)
     {
         $search = $this->client()->resource(ResourceType::TICKET)->search($string, $page, $objects_per_page);
 
         if ($search)
             return $search;
 
-        if ($search->hasError())
+        if (empty($search))
         {
-            return $search->getError();
-        }
+            return [];
+	}
 
         return false;
     }
 
-    // ticket functions
     public function allTickets($page = null, $objects_per_page = null)
     {
         $tickets = $this->tickets = $this->client()->resource(ResourceType::TICKET)->all($page, $objects_per_page);
@@ -122,6 +122,21 @@ class Zammad
     }
 
     // user functions
+    public function searchUsers($string, $page = null, $objects_per_page = null)
+    {
+        $search = $this->client()->resource(ResourceType::USER)->search($string, $page, $objects_per_page);
+
+        if ($search)
+            return $search;
+
+        if (empty($search))
+        {
+            return [];
+        }
+
+        return false;
+    }
+
     public function allUsers($page = null, $objects_per_page = null)
     {
         $users = $this->users = $this->client()->resource(ResourceType::USER)->all($page, $objects_per_page);
@@ -192,6 +207,21 @@ class Zammad
     }
 
     // organization functions
+    public function searchOrganizations($string, $page = null, $objects_per_page = null)
+    {
+        $search = $this->client()->resource(ResourceType::ORGANIZATION)->search($string, $page, $objects_per_page);
+
+        if ($search)
+            return $search;
+
+	if (empty($search))
+        {
+            return [];
+        }
+
+        return false;
+    }
+
     public function allOrganizations($page = null, $objects_per_page = null)
     {
         $organizations = $this->organizations = $this->client()->resource(ResourceType::ORGANIZATION)->all($page, $objects_per_page);
