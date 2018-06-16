@@ -41,7 +41,7 @@ Edit config/app.php and add in aliases section:
     ]
 ```
 ## How to use this wrapper
-Example code:
+Example code for tickets:
 ```php
 use LaravelZammad;
 
@@ -81,12 +81,100 @@ class MyController extends Controller
       $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
       $data = $zammad::createTicket($ticket_values)
 
-      // Update a new ticket
+      // Update a ticket
       $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
       $data = $zammad::updateTicket($ticket_id, $ticket_values)
 
       // Delete a ticket
       $data = $zammad::deleteTicket($ticket_id)
+    }
+}
+```
+
+Example code for users:
+```php
+use LaravelZammad;
+
+class MyController extends Controller
+{
+
+  public function index(LaravelZammad $zammad)
+  {
+      // get all users
+      $data = $zammad::allUsers();
+      // get all users with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::allUsers(4, 50);
+
+      // get user of specific id
+      $data = $zammad::findUser(34);
+
+      // To view the data (all values)
+      $data->getValues();
+
+      // Get single value
+      $data->getValue('title');
+
+      // Search the data
+      $data = $zammad::search('text that you want to search')
+      // get search results with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::search('text you want to search', 4, 50);
+
+      // Add new User
+      $user_values = ['email' => 'user@user.com', 'owner_id' => 1]
+      $data = $zammad::createUser($user_values)
+
+      // Update a user
+      $user_values = ['email' => 'user@user.com', 'owner_id' => 1]
+      $data = $zammad::updateUser($user_id, $user_values)
+
+      // Delete a user
+      $data = $zammad::deleteUser($user_id)
+    }
+}
+```
+
+Example code for Organizations:
+```php
+use LaravelZammad;
+
+class MyController extends Controller
+{
+
+  public function index(LaravelZammad $zammad)
+  {
+      // get all organizations
+      $data = $zammad::allOrganizaions();
+      // get all organizations with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::allOrganizations(4, 50);
+
+      // get organization of specific id
+      $data = $zammad::findOrganization(34);
+
+      // To view the data (all values)
+      $data->getValues();
+
+      // Get single value
+      $data->getValue('title');
+
+      // Search the data
+      $data = $zammad::search('text that you want to search')
+      // get search results with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::search('text you want to search', 4, 50);
+
+      // Add organization
+      $organization_values = ['name' => 'Zammad', 'active' => true]
+      $data = $zammad::createOrganization($organization_values)
+
+      // Update an organization
+      $organization_values = ['name' => 'Zammad', 'active' => true]
+      $data = $zammad::updateOrganization($organization_id, $organization_values)
+
+      // Delete an organization
+      $data = $zammad::deleteOrganization($organization_id)
     }
 }
 ```
