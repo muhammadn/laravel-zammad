@@ -43,7 +43,7 @@ Edit config/app.php and add in aliases section:
 ## How to use this wrapper
 Example code:
 ```php
-
+use LaravelZammad;
 
 class MyController extends Controller
 {
