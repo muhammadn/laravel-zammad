@@ -51,25 +51,31 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all tickets
-      $data = $zammad::getTickets()
+      $data = $zammad::allickets();
+      // get all tickets with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::allTickets(4, 50);
 
       // get ticket of specific id
-      $data = $zammad::getTicket(34)
+      $data = $zammad::getTicket(34);
 
       // To view the data (all values)
-      $data->getValues()
+      $data->getValues();
 
       // Get single value 
-      $data->getValue('title')
+      $data->getValue('title');
 
       // get articles from ticket
-      $ticket = $zammad::getTickets(34)
+      $ticket = $zammad::getTickets(34);
       $articles = $ticket->getTicketArticles();
       // get first article content
       $article_content = $articles[0]->getValues();
 
       // Search the data
       $data = $zammad::search('text that you want to search')
+      // get search results with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::search('text you want to search', 4, 50);
 
       // Add new ticket
       $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
