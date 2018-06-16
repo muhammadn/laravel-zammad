@@ -1,6 +1,6 @@
 {
     "name": "muhammadn/laravel-zammad",
-    "description": "Laravel wrapper for official zammad-api-client-php",
+    "description": "Laravel wrapper for official zammad-api-client-php library",
     "require": {
         "zammad/zammad-api-client-php": "^1.2"
     },
