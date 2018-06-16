@@ -12,7 +12,7 @@ Additionally, the API client needs PHP 5.6 or newer.
 ### Integration into your project
 Run the following command within the root folder of your laravel project to install the wrapper:
 ```
-composer require muhammadn/zammad-laravel
+composer require muhammadn/laravel-zammad
 ```
 
 ### Add Zammad credentials for your Laravel installation
