@@ -32,9 +32,9 @@ class Zammad
         return $client;
     }
 
-    public function getTickets()
+    public function allTickets($page = null, $objects_per_page = null)
     {
-        $tickets = $this->tickets = $this->client()->resource(ResourceType::TICKET)->all();
+        $tickets = $this->tickets = $this->client()->resource(ResourceType::TICKET)->all($page, $objects_per_page);
 
         if ($this->tickets)
             return $this->tickets;
@@ -68,9 +68,9 @@ class Zammad
         $ticket->delete();
     }
 
-    public function search($string)
+    public function search($string, $page = null, $objects_per_page = null)
     {
-        $search = $this->client()->resource(ResourceType::TICKET)->search($string);
+        $search = $this->client()->resource(ResourceType::TICKET)->search($string, $page, $objects_per_page);
 
         if ($search)
             return $search;
