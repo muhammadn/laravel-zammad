@@ -36,7 +36,7 @@ Edit config/app.php and add in providers section:
 Edit config/app.php and add in aliases section:
 ```php
     'aliases' => [
-        ... all the facades ...
+        ... all the other facades ...
         'LaravelZammad' => Muhammadn\ZammadLaravel\ZammadFacade::class,
     ]
 ```
