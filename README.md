@@ -229,7 +229,7 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all ticket priorities
-      $data = $zammad::allTicketPrioritiess();
+      $data = $zammad::allTicketPriorities();
       // get all ticket states with pagination
       // example below for page 4, 50 entries at a time.
       $data = $zammad::allTicketPrioritiess(4, 50);
