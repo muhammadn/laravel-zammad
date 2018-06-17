@@ -26,9 +26,9 @@ ZAMMAD_URL='https://your-zammad-instance'
 # which is different than your ZAMMAD_USERNAME above
 ZAMMAD_ON_BEHALF_USER='otheruser@user.com'
 # Sets the debug mode
-ZAMMAD_DEBUG="true"
+ZAMMAD_DEBUG=true
 # Sets the API client timeout to Zammad API
-ZAMMAD_TIMEOUT="15"
+ZAMMAD_TIMEOUT=15
 ```
 
 ### Configure your laravel providers to use this wrapper
@@ -232,7 +232,7 @@ class MyController extends Controller
       $data = $zammad::allTicketPriorities();
       // get all ticket states with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allTicketPrioritiess(4, 50);
+      $data = $zammad::allTicketPriorities(4, 50);
 
       // get ticket priority of specific id
       $data = $zammad::findTicketPriority(34);
