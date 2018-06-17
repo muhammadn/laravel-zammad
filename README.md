@@ -143,6 +143,146 @@ class MyController extends Controller
 }
 ```
 
+Example code for groups:
+```php
+use LaravelZammad;
+
+class MyController extends Controller
+{
+
+  public function index(LaravelZammad $zammad)
+  {
+      // get all groups
+      $data = $zammad::allGroups();
+      // get all groups with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::allGroups(4, 50);
+
+      // get group of specific id
+      $data = $zammad::findGroup(34);
+
+      // To view the data (all values)
+      $data->getValues();
+
+      // Get single value
+      $data->getValue('title');
+
+      // Add new Group
+      $group_values = ['name' => 'ZammadGroup']
+      $data = $zammad::createGroup($group_values)
+
+      // Update a group
+      $group_values = ['name' => 'ZammadGroup2']
+      $data = $zammad::updateGroup($group_id, $group_values)
+
+      // Delete a group
+      $data = $zammad::deleteGroup($group_id)
+    }
+}
+```
+
+Example code for ticket state:
+```php
+use LaravelZammad;
+
+class MyController extends Controller
+{
+
+  public function index(LaravelZammad $zammad)
+  {
+      // get all ticket states
+      $data = $zammad::allTicketStates();
+      // get all ticket states with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::allTicketStates(4, 50);
+
+      // get ticket state of specific id
+      $data = $zammad::findTicketState(34);
+
+      // To view the data (all values)
+      $data->getValues();
+
+      // Get single value
+      $data->getValue('title');
+
+      // Add new ticket state
+      $state_values = ['name' => 'delayed', 'active' => true]
+      $data = $zammad::createTicketState($state_values)
+
+      // Update a ticket state
+      $state_values = ['name' => 'boarding', 'active' => true]
+      $data = $zammad::updateTicketState($state_id, $state_values)
+
+      // Delete a ticket state
+      $data = $zammad::deleteTicketState($state_id)
+    }
+}
+```
+
+Example code for ticket priority:
+```php
+use LaravelZammad;
+
+class MyController extends Controller
+{
+
+  public function index(LaravelZammad $zammad)
+  {
+      // get all ticket priorities
+      $data = $zammad::allTicketPrioritiess();
+      // get all ticket states with pagination
+      // example below for page 4, 50 entries at a time.
+      $data = $zammad::allTicketPrioritiess(4, 50);
+
+      // get ticket priority of specific id
+      $data = $zammad::findTicketPriority(34);
+
+      // To view the data (all values)
+      $data->getValues();
+
+      // Get single value
+      $data->getValue('title');
+
+      // Add new ticket priority
+      $priority_values = ['name' => '4 urgent', 'active' => true]
+      $data = $zammad::createTicketPriority($priority_values)
+
+      // Update a ticket priority
+      $priority_values = ['name' => '5 very very urgent', 'active' => true]
+      $data = $zammad::updateTicketPriority($priority_id, $priority_values)
+
+      // Delete a ticket state
+      $data = $zammad::deleteTicketPriority($priority_id)
+    }
+}
+```
+
+Example code for ticket articles:
+```php
+  public function index(LaravelZammad $zammad)
+  {
+      // get ticket article of specific id
+      $data = $zammad::findTicketArticle(34);
+
+      // To view the data (all values)
+      $data->getValues();
+
+      // Get single value
+      $data->getValue('title');
+
+      // Add ticket article
+      $ticket_article_values = ['ticket_id' => 1, 'type_id' => 5, 'sender_id' => 2]
+      $data = $zammad::createTicketArticle($ticket_article_values)
+
+      // Update a ticket article
+      $ticket_article_values = ['ticket_id' => 2, 'type_id' => 3, 'sender_id' => 7]
+      $data = $zammad::updateTicketArticle($ticket_article_id, $ticket_article_values)
+
+      // Delete a ticket article
+      $data = $zammad::deleteTicketArticle($ticket_article_id)
+
+```
+
 Example code for Organizations:
 ```php
 use LaravelZammad;
