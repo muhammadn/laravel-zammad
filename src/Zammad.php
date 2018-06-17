@@ -24,6 +24,9 @@ class Zammad
         $this->username = env('ZAMMAD_USERNAME');
         $this->password = env('ZAMMAD_PASSWORD');
 	$this->url      = env('ZAMMAD_URL');
+        $this->onBehalf = env('ZAMMAD_ON_BEHALF_USER');
+	$this->debug    = env('ZAMMAD_DEBUG');
+	$this->timeout  = env('ZAMMAD_TIMEOUT');
     }
 
     protected function client(){
@@ -33,6 +36,20 @@ class Zammad
             'password'      => $this->password,           // Password to use for authentication
         ]);
 
+	if (!empty($this->onBehalf))
+        {
+            $client->setOnBehalfOfUser($this->onBehalf);
+        }
+
+	if ($this->debug === 'true') 
+        {
+            $client->debug = true;
+        }
+
+	if (!empty($this->timeout) && is_integer($this->timeout))
+        {
+            $client->timeout = (integer) $this->timeout;
+        }
         return $client;
     }
 

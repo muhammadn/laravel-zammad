@@ -21,6 +21,14 @@ Edit your .env file (at the root folder of your laravel project) and add your us
 ZAMMAD_USERNAME='your_zammad_email'
 ZAMMAD_PASSWORD='zammad_password'
 ZAMMAD_URL='https://your-zammad-instance'
+# Optional parameters
+# Sets on behalf f you want to use API _as another user_
+# which is different than your ZAMMAD_USERNAME above
+ZAMMAD_ON_BEHALF_USER='otheruser@user.com'
+# Sets the debug mode
+ZAMMAD_DEBUG="true"
+# Sets the API client timeout to Zammad API
+ZAMMAD_TIMEOUT="15"
 ```
 
 ### Configure your laravel providers to use this wrapper
