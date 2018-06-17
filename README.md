@@ -21,7 +21,7 @@ Edit your .env file (at the root folder of your laravel project) and add your us
 ZAMMAD_USERNAME='your_zammad_email'
 ZAMMAD_PASSWORD='zammad_password'
 ZAMMAD_URL='https://your-zammad-instance'
-# Optional parameters
+### Optional parameters
 # Sets on behalf f you want to use API _as another user_
 # which is different than your ZAMMAD_USERNAME above
 ZAMMAD_ON_BEHALF_USER='otheruser@user.com'
