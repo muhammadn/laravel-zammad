@@ -49,7 +49,8 @@ Edit config/app.php and add in aliases section:
     ]
 ```
 ## How to use this wrapper
-Example code for tickets:
+
+Example code:
 ```php
 use LaravelZammad;
 
@@ -59,13 +60,13 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all tickets
-      $data = $zammad::allTickets();
+      $data = $zammad::all('ticket');
       // get all tickets with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allTickets(4, 50);
+      $data = $zammad::all('ticket', 4, 50);
 
       // get ticket of specific id
-      $data = $zammad::findTicket(34);
+      $data = $zammad::find('ticket', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -74,27 +75,27 @@ class MyController extends Controller
       $data->getValue('title');
 
       // get articles from ticket
-      $ticket = $zammad::findTicket(34);
+      $ticket = $zammad::find('ticket', 34);
       $articles = $ticket->getTicketArticles();
       // get first article content
       $article_content = $articles[0]->getValues();
 
       // Search the data
-      $data = $zammad::searchTickets('text that you want to search')
+      $data = $zammad::search('ticket', 'text that you want to search')
       // get search results with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::searchTickets('text you want to search', 4, 50);
+      $data = $zammad::search('ticket', 'text you want to search', 4, 50);
 
       // Add new ticket
       $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
-      $data = $zammad::createTicket($ticket_values)
+      $data = $zammad::create('ticket', $ticket_values)
 
       // Update a ticket
       $ticket_values = ['title' => 'Test Ticket', 'owner_id' => 1]
-      $data = $zammad::updateTicket($ticket_id, $ticket_values)
+      $data = $zammad::update('ticket', $ticket_id, $ticket_values)
 
       // Delete a ticket
-      $data = $zammad::deleteTicket($ticket_id)
+      $data = $zammad::delete('ticket', $ticket_id)
     }
 }
 ```
@@ -109,13 +110,13 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all users
-      $data = $zammad::allUsers();
+      $data = $zammad::all('user');
       // get all users with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allUsers(4, 50);
+      $data = $zammad::all('user', 4, 50);
 
       // get user of specific id
-      $data = $zammad::findUser(34);
+      $data = $zammad::find('user', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -124,21 +125,21 @@ class MyController extends Controller
       $data->getValue('title');
 
       // Search the data
-      $data = $zammad::searchUsers('text that you want to search')
+      $data = $zammad::search('user', 'text that you want to search')
       // get search results with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::searchUsers('text you want to search', 4, 50);
+      $data = $zammad::search('user', 'text you want to search', 4, 50);
 
       // Add new User
       $user_values = ['email' => 'user@user.com', 'owner_id' => 1]
-      $data = $zammad::createUser($user_values)
+      $data = $zammad::create('user', $user_values)
 
       // Update a user
       $user_values = ['email' => 'user@user.com', 'owner_id' => 1]
-      $data = $zammad::updateUser($user_id, $user_values)
+      $data = $zammad::update('user', $user_id, $user_values)
 
       // Delete a user
-      $data = $zammad::deleteUser($user_id)
+      $data = $zammad::delete('user', $user_id)
     }
 }
 ```
@@ -153,13 +154,13 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all groups
-      $data = $zammad::allGroups();
+      $data = $zammad::all('group');
       // get all groups with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allGroups(4, 50);
+      $data = $zammad::all('group', 4, 50);
 
       // get group of specific id
-      $data = $zammad::findGroup(34);
+      $data = $zammad::find('group', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -169,14 +170,14 @@ class MyController extends Controller
 
       // Add new Group
       $group_values = ['name' => 'ZammadGroup']
-      $data = $zammad::createGroup($group_values)
+      $data = $zammad::create('group', $group_values)
 
       // Update a group
       $group_values = ['name' => 'ZammadGroup2']
-      $data = $zammad::updateGroup($group_id, $group_values)
+      $data = $zammad::update('group', $group_id, $group_values)
 
       // Delete a group
-      $data = $zammad::deleteGroup($group_id)
+      $data = $zammad::delete('group', $group_id)
     }
 }
 ```
@@ -191,13 +192,13 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all ticket states
-      $data = $zammad::allTicketStates();
+      $data = $zammad::all('ticket_state');
       // get all ticket states with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allTicketStates(4, 50);
+      $data = $zammad::all('ticket_state', 4, 50);
 
       // get ticket state of specific id
-      $data = $zammad::findTicketState(34);
+      $data = $zammad::find('ticket_state', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -207,14 +208,14 @@ class MyController extends Controller
 
       // Add new ticket state
       $state_values = ['name' => 'delayed', 'active' => true]
-      $data = $zammad::createTicketState($state_values)
+      $data = $zammad::create('ticket_state', $state_values)
 
       // Update a ticket state
       $state_values = ['name' => 'boarding', 'active' => true]
-      $data = $zammad::updateTicketState($state_id, $state_values)
+      $data = $zammad::update('ticket_state;, $state_id, $state_values)
 
       // Delete a ticket state
-      $data = $zammad::deleteTicketState($state_id)
+      $data = $zammad::delete('ticket_state', $state_id)
     }
 }
 ```
@@ -229,13 +230,13 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all ticket priorities
-      $data = $zammad::allTicketPriorities();
+      $data = $zammad::all('ticket_priority');
       // get all ticket states with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allTicketPriorities(4, 50);
+      $data = $zammad::all('ticket_prioriry', 4, 50);
 
       // get ticket priority of specific id
-      $data = $zammad::findTicketPriority(34);
+      $data = $zammad::find('ticket_priority', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -245,14 +246,14 @@ class MyController extends Controller
 
       // Add new ticket priority
       $priority_values = ['name' => '4 urgent', 'active' => true]
-      $data = $zammad::createTicketPriority($priority_values)
+      $data = $zammad::create('ticket_priority', $priority_values)
 
       // Update a ticket priority
       $priority_values = ['name' => '5 very very urgent', 'active' => true]
-      $data = $zammad::updateTicketPriority($priority_id, $priority_values)
+      $data = $zammad::update('ticket_priority', $priority_id, $priority_values)
 
       // Delete a ticket state
-      $data = $zammad::deleteTicketPriority($priority_id)
+      $data = $zammad::delete('ticket_priority', $priority_id)
     }
 }
 ```
@@ -262,7 +263,7 @@ Example code for ticket articles:
   public function index(LaravelZammad $zammad)
   {
       // get ticket article of specific id
-      $data = $zammad::findTicketArticle(34);
+      $data = $zammad::find('ticket_article', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -272,14 +273,14 @@ Example code for ticket articles:
 
       // Add ticket article
       $ticket_article_values = ['ticket_id' => 1, 'type_id' => 5, 'sender_id' => 2]
-      $data = $zammad::createTicketArticle($ticket_article_values)
+      $data = $zammad::create('ticket_article', $ticket_article_values)
 
       // Update a ticket article
       $ticket_article_values = ['ticket_id' => 2, 'type_id' => 3, 'sender_id' => 7]
-      $data = $zammad::updateTicketArticle($ticket_article_id, $ticket_article_values)
+      $data = $zammad::update('ticket_article', $ticket_article_id, $ticket_article_values)
 
       // Delete a ticket article
-      $data = $zammad::deleteTicketArticle($ticket_article_id)
+      $data = $zammad::delete('ticket_article', $ticket_article_id)
 
 ```
 
@@ -293,13 +294,13 @@ class MyController extends Controller
   public function index(LaravelZammad $zammad)
   {
       // get all organizations
-      $data = $zammad::allOrganizations();
+      $data = $zammad::all('organization');
       // get all organizations with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::allOrganizations(4, 50);
+      $data = $zammad::all('organization', 4, 50);
 
       // get organization of specific id
-      $data = $zammad::findOrganization(34);
+      $data = $zammad::find('organization', 34);
 
       // To view the data (all values)
       $data->getValues();
@@ -308,21 +309,21 @@ class MyController extends Controller
       $data->getValue('title');
 
       // Search the data
-      $data = $zammad::searchOrganizations('text that you want to search')
+      $data = $zammad::search('organization', 'text that you want to search')
       // get search results with pagination
       // example below for page 4, 50 entries at a time.
-      $data = $zammad::searchOrganizations('text you want to search', 4, 50);
+      $data = $zammad::search('organization', 'text you want to search', 4, 50);
 
       // Add organization
       $organization_values = ['name' => 'Zammad', 'active' => true]
-      $data = $zammad::createOrganization($organization_values)
+      $data = $zammad::create('organization', $organization_values)
 
       // Update an organization
       $organization_values = ['name' => 'Zammad', 'active' => true]
-      $data = $zammad::updateOrganization($organization_id, $organization_values)
+      $data = $zammad::update('organization', $organization_id, $organization_values)
 
       // Delete an organization
-      $data = $zammad::deleteOrganization($organization_id)
+      $data = $zammad::delete('organization', $organization_id)
     }
 }
 ```

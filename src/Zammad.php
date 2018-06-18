@@ -21,7 +21,8 @@ class Zammad
 	$this->timeout  = env('ZAMMAD_TIMEOUT');
     }
 
-    protected function client(){
+    protected function client() 
+    {
         $client = new Client([
             'url'           => $this->url,  // URL to your Zammad installation
             'username'      => $this->username,  // Username to use for authentication
@@ -46,12 +47,162 @@ class Zammad
     }
 
     // ticket functions
+
+    public function search($type, $string, $page = null, $objects_per_page = null)
+    {
+        switch($type) {
+            case 'ticket':
+                return $this->searchTickets($string, $page, $objects_per_page);
+                break;
+            case 'user':
+                return $this->searchUsers($string, $page, $objects_per_page);
+                break;
+            case 'organization':
+                return $this->searchOrganizations($string, $page, $objects_per_page);
+                break;
+        }
+    }
+
+    public function all($type, $page = null, $objects_per_page = null)
+    {
+        switch($type) {
+            case 'user':
+                return $this->allTickets($page, $objects_per_page);
+                break;
+            case 'group':
+                return $this->allGroups($page, $objects_per_page);
+                break;
+            case 'organization':
+                return $this->allOrganizations($page, $objects_per_page);
+                break;
+            case 'ticket':
+                return $this->allTickets($page, $objects_per_page);
+                break;
+            case 'ticket_priority':
+                return $this->allTicketPriorities($page, $objects_per_page);
+                break;
+            case 'ticket_state':
+                return $this->allTicketStates($page, $objects_per_page);
+                break;
+        }
+    }
+
+    public function create($type, $array)
+    {
+        switch($type) {
+             case 'ticket':
+                 $this->createTicket($array);
+		 break;
+             case 'organization':
+                 $this->createOrganization($array);
+                 break;
+             case 'ticket_priority':
+                 $this->createTicketPriority($array);
+                 break;
+             case 'ticket_state':
+                 $this->createTicketState($array); 
+                 break;
+             case 'ticket_article':
+                 $this->createTicketArticle($array);
+		 break;
+             case 'user':
+                 $this->createUser($array);
+                 break;
+             case 'group':
+                 $this->createGroup($array);
+                 break;
+        }
+    }
+
+    public function find($type, $id)
+    {
+        switch($type) {
+	    case 'ticket':
+                return $this->findTicket($id);
+	        break;
+            case 'organization':
+                return $this->findOrganization($id);
+		break;
+            case 'ticket_priority':
+                return $this->findTicketPriority($id);
+		break;
+            case 'ticket_state':
+                return $this->findTicketState($id);
+                break;
+            case 'ticket_article':
+                return $this->findTicketArticle($id);
+                break;
+            case 'user':
+                return $this->findUser($id);
+		break;
+            case 'group':
+                return $this->findGroup($id);
+                break;
+        }
+
+    }
+
+    public function update($type, $id, $array)
+    {
+        switch($type) {
+            case 'ticket':
+                return $this->updateTicket($id, $array);
+                break;
+            case 'organization':
+                return $this->updateOrganization($id, $array);
+                break;
+            case 'ticket_priority':
+                return $this->updateTicketPriority($id, $array);
+                break;
+            case 'ticket_state':
+                return $this->updateTicketState($id, $array);
+                break;
+            case 'ticket_article':
+                return $this->updateTicketArticle($id, $array);
+                break;
+            case 'user':
+                return $this->updateUser($id, $array);
+                break;
+            case 'group':
+                return $this->updateGroup($id, $array);
+                break;
+        }
+
+    }
+
+    public function delete($type, $id)
+    {
+        switch($type) {
+            case 'ticket':
+                return $this->deleteTicket($id);
+                break;
+            case 'organization':
+                return $this->deleteOrganization($id);
+                break;
+            case 'ticket_priority':
+                return $this->deleteTicketPriority($id);
+                break;
+            case 'ticket_state':
+                return $this->deleteTicketState($id);
+                break;
+            case 'ticket_article':
+                return $this->deletTicketArticle($id);
+                break;
+            case 'user':
+                return $this->deleteUser($id);
+                break;
+            case 'group':
+                return $this->deleteGroup($id);
+                break;
+        }
+    }
+
     public function searchTickets($string, $page = null, $objects_per_page = null)
     {
-        $search = $this->client()->resource(ResourceType::TICKET)->search($string, $page, $objects_per_page);
+        $search = $this->search = $this->client()->resource(ResourceType::TICKET)->search($string, $page, $objects_per_page);
 
-        if ($search)
-            return $search;
+        if ($this->search)
+            return $this->search;
 
         if (empty($search))
         {
@@ -133,10 +284,10 @@ class Zammad
     // user functions
     public function searchUsers($string, $page = null, $objects_per_page = null)
     {
-        $search = $this->client()->resource(ResourceType::USER)->search($string, $page, $objects_per_page);
+        $search = $this->search = $this->client()->resource(ResourceType::USER)->search($string, $page, $objects_per_page);
 
-        if ($search)
-            return $search;
+        if ($$this->search)
+            return $this->search;
 
         if (empty($search))
         {
@@ -289,10 +440,10 @@ class Zammad
     // organization functions
     public function searchOrganizations($string, $page = null, $objects_per_page = null)
     {
-        $search = $this->client()->resource(ResourceType::ORGANIZATION)->search($string, $page, $objects_per_page);
+        $search = $this->search = $this->client()->resource(ResourceType::ORGANIZATION)->search($string, $page, $objects_per_page);
 
-        if ($search)
-            return $search;
+        if ($this->search)
+            return $this->search;
 
 	if (empty($search))
         {
