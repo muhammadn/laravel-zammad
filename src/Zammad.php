@@ -204,10 +204,9 @@ class Zammad
         if ($this->search)
             return $this->search;
 
-        if (empty($search))
-        {
-            return [];
-	}
+        if (!is_array($search)) {
+            return $search->getError();
+        }
 
         return false;
     }
@@ -289,9 +288,8 @@ class Zammad
         if ($this->search)
             return $this->search;
 
-        if (empty($search))
-        {
-            return [];
+        if (!is_array($search)) {
+            return $search->getError();
         }
 
         return false;
@@ -445,10 +443,9 @@ class Zammad
         if ($this->search)
             return $this->search;
 
-	if (empty($search))
-        {
-            return [];
-        }
+        if (!is_array($search)) {
+            return $search->getError();
+	}
 
         return false;
     }
