@@ -22,7 +22,7 @@ ZAMMAD_USERNAME='your_zammad_email'
 ZAMMAD_PASSWORD='zammad_password'
 ZAMMAD_URL='https://your-zammad-instance'
 ### Optional parameters
-# Sets on behalf f you want to use API _as another user_
+# Sets on behalf if you want to use API **as another user**
 # which is different than your ZAMMAD_USERNAME above
 ZAMMAD_ON_BEHALF_USER='otheruser@user.com'
 # Sets the debug mode
