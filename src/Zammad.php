@@ -67,7 +67,7 @@ class Zammad
     {
         switch($type) {
             case 'user':
-                return $this->allTickets($page, $objects_per_page);
+                return $this->allUsers($page, $objects_per_page);
                 break;
             case 'group':
                 return $this->allGroups($page, $objects_per_page);
