@@ -286,7 +286,7 @@ class Zammad
     {
         $search = $this->search = $this->client()->resource(ResourceType::USER)->search($string, $page, $objects_per_page);
 
-        if ($$this->search)
+        if ($this->search)
             return $this->search;
 
         if (empty($search))
