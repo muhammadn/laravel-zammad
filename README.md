@@ -36,7 +36,7 @@ Edit config/app.php and add in providers section:
 ```php
     'providers' => [
         .... all the other providers ....
-        Muhammadn\ZammadLaravel\ZammadServiceProvider::class,
+        Muhammadn\LaravelZammad\ZammadServiceProvider::class,
     ],
 ```      
 
@@ -45,7 +45,7 @@ Edit config/app.php and add in aliases section:
 ```php
     'aliases' => [
         ... all the other facades ...
-        'LaravelZammad' => Muhammadn\ZammadLaravel\ZammadFacade::class,
+        'LaravelZammad' => Muhammadn\LaravelZammad\ZammadFacade::class,
     ]
 ```
 ## How to use this wrapper
