@@ -60,6 +60,8 @@ class Zammad
             case 'organization':
                 return $this->searchOrganizations($string, $page, $objects_per_page);
                 break;
+            default:
+                return 'Unsupported resource type: ' . '"' . $type . '"';
         }
     }
 
@@ -84,6 +86,8 @@ class Zammad
             case 'ticket_state':
                 return $this->allTicketStates($page, $objects_per_page);
                 break;
+            default:
+                return 'Unsupported resource type: ' . '"' . $type . '"';
         }
     }
 
@@ -111,6 +115,8 @@ class Zammad
              case 'group':
                  $this->createGroup($array);
                  break;
+             default:
+                return 'Unsupported resource type: ' . '"' . $type . '"';
         }
     }
 
@@ -138,6 +144,8 @@ class Zammad
             case 'group':
                 return $this->findGroup($id);
                 break;
+            default:
+                return 'Unsupported resource type: ' . '"' . $type . '"';
         }
 
     }
@@ -166,6 +174,8 @@ class Zammad
             case 'group':
                 return $this->updateGroup($id, $array);
                 break;
+            default:
+                return 'Unsupported resource type: ' . '"' . $type . '"';
         }
 
     }
@@ -194,6 +204,8 @@ class Zammad
             case 'group':
                 return $this->deleteGroup($id);
                 break;
+            default:
+                return 'Unsupported resource type: ' . '"' . $type . '"';
         }
     }
 
